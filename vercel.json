@@ -1,4 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "sh ./build.sh",
+  "outputDirectory": ".next",
   "framework": "nextjs"
 } 
