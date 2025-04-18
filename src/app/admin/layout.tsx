@@ -122,7 +122,14 @@ export default function AdminLayout({
   );
 }
 
-function SidebarLink({ href, children, active, icon }) {
+interface SidebarLinkProps {
+  href: string;
+  children: React.ReactNode;
+  active: boolean;
+  icon: React.ReactNode;
+}
+
+function SidebarLink({ href, children, active, icon }: SidebarLinkProps) {
   return (
     <Link 
       href={href} 
@@ -134,12 +141,16 @@ function SidebarLink({ href, children, active, icon }) {
   );
 }
 
-function LoginForm({ onLoginSuccess }) {
+interface LoginFormProps {
+  onLoginSuccess: () => void;
+}
+
+function LoginForm({ onLoginSuccess }: LoginFormProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // 简单的管理员验证
