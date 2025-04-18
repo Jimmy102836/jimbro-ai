@@ -2,6 +2,28 @@
 
 import { useState, useEffect } from "react";
 
+// 定义活动类型
+type ActivityType = "user" | "content" | "payment" | "system";
+
+interface Activity {
+  type: ActivityType;
+  message: string;
+  time: string;
+}
+
+interface StatCardProps {
+  title: string;
+  value: string | number;
+  icon: React.ReactNode;
+  color: "blue" | "green" | "purple" | "yellow";
+}
+
+interface QuickActionProps {
+  icon: React.ReactNode;
+  title: string;
+  href: string;
+}
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -160,7 +182,7 @@ export default function AdminDashboard() {
   );
 }
 
-function StatCard({ title, value, icon, color }) {
+function StatCard({ title, value, icon, color }: StatCardProps) {
   const colorClasses = {
     blue: "bg-blue-100 text-blue-600",
     green: "bg-green-100 text-green-600",
@@ -183,7 +205,7 @@ function StatCard({ title, value, icon, color }) {
   );
 }
 
-function QuickAction({ icon, title, href }) {
+function QuickAction({ icon, title, href }: QuickActionProps) {
   return (
     <a
       href={href}
@@ -198,7 +220,7 @@ function QuickAction({ icon, title, href }) {
 }
 
 // 模拟最近活动数据
-const recentActivities = [
+const recentActivities: Activity[] = [
   {
     type: "user",
     message: "新用户 张三 注册了账号",
@@ -227,7 +249,7 @@ const recentActivities = [
 ];
 
 // 活动类型对应的图标
-const activityIcons = {
+const activityIcons: Record<ActivityType, React.ReactNode> = {
   user: (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -251,7 +273,7 @@ const activityIcons = {
 };
 
 // 活动类型对应的颜色
-const activityColors = {
+const activityColors: Record<ActivityType, string> = {
   user: "bg-blue-100 text-blue-600",
   content: "bg-purple-100 text-purple-600",
   payment: "bg-green-100 text-green-600",
