@@ -2,9 +2,41 @@
 
 import { useState } from "react";
 
+// 定义设置类型
+interface SiteSettings {
+  siteName: string;
+  siteDescription: string;
+  logo: string;
+  contactEmail: string;
+  homePageLayout: string;
+}
+
+interface ApiSettings {
+  apiKey: string;
+  requestsPerMinute: number;
+  enableLogging: boolean;
+  enableCaching: boolean;
+}
+
+interface SeoSettings {
+  metaTitle: string;
+  metaDescription: string;
+  enableSitemap: boolean;
+  enableRobotsTxt: boolean;
+  googleAnalyticsId: string;
+}
+
+interface SocialSettings {
+  twitter: string;
+  facebook: string;
+  instagram: string;
+  youtube: string;
+  discord: string;
+}
+
 export default function SettingsPage() {
   // 网站设置状态
-  const [siteSettings, setSiteSettings] = useState({
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>({
     siteName: "JimBroAI",
     siteDescription: "AI驱动的创作平台",
     logo: "/images/logo.png",
@@ -13,7 +45,7 @@ export default function SettingsPage() {
   });
   
   // API设置状态
-  const [apiSettings, setApiSettings] = useState({
+  const [apiSettings, setApiSettings] = useState<ApiSettings>({
     apiKey: "sk-**************************",
     requestsPerMinute: 60,
     enableLogging: true,
@@ -21,7 +53,7 @@ export default function SettingsPage() {
   });
   
   // SEO设置状态
-  const [seoSettings, setSeoSettings] = useState({
+  const [seoSettings, setSeoSettings] = useState<SeoSettings>({
     metaTitle: "JimBroAI - AI创作平台",
     metaDescription: "JimBroAI是一个AI驱动的创作平台，帮助用户高效创作内容",
     enableSitemap: true,
@@ -30,7 +62,7 @@ export default function SettingsPage() {
   });
   
   // 社交媒体设置状态
-  const [socialSettings, setSocialSettings] = useState({
+  const [socialSettings, setSocialSettings] = useState<SocialSettings>({
     twitter: "https://twitter.com/jimbro_ai",
     facebook: "https://facebook.com/jimbroai",
     instagram: "https://instagram.com/jimbro_ai",
@@ -39,25 +71,25 @@ export default function SettingsPage() {
   });
   
   // 处理网站设置表单提交
-  const handleSiteSettingsSubmit = (e) => {
+  const handleSiteSettingsSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("网站设置已保存");
   };
   
   // 处理API设置表单提交
-  const handleApiSettingsSubmit = (e) => {
+  const handleApiSettingsSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("API设置已保存");
   };
   
   // 处理SEO设置表单提交
-  const handleSeoSettingsSubmit = (e) => {
+  const handleSeoSettingsSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("SEO设置已保存");
   };
   
   // 处理社交媒体设置表单提交
-  const handleSocialSettingsSubmit = (e) => {
+  const handleSocialSettingsSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("社交媒体设置已保存");
   };
